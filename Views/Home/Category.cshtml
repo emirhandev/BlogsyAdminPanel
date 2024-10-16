@@ -1,0 +1,83 @@
+﻿@model IEnumerable<AdminBlog.Models.Category>
+@{
+    ViewData["Title"] = "Categories";
+}
+<div class="container mt-4">
+    <h2>@ViewData["Title"]</h2>
+    <button type="button" id="CategoryModalBtn" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#CategoryModal">Add Category</button>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col" class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var category in Model) {
+                <tr>
+                    <th scope="row">@category.Id</th>
+                    <td>@category.Name</td>
+                    <td class="text-center">
+                        <a class="btn btn-danger" asp-route-id="@category.Id" asp-action="DeleteCategory" onclick="return confirm('Are you sure you want to delete this category?');">Delete</a>
+                        <button class="btn btn-secondary" onclick="updateForm(@category.Id)" type="button">Update</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+ 
+    <div class="modal fade" id="CategoryModal" tabindex="-1" aria-labelledby="CategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="CategoryModalLabel">Add Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="categoryForm" method="POST" action="/Home/AddCategory" autocomplete="off">
+                    <div class="modal-body">
+                        <input type="hidden" name="Id" id="Id">
+                        <div class="mb-3">
+                            <label for="Name"style="font-weight: bold; class="form-label">Name:</label>
+                            <input type="text" name="Name" id="Name" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="clearForm()" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" id="saveBtn" class="btn btn-primary">Add</button>
+                        <button type="submit" id="updateBtn" class="btn btn-primary d-none">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            clearForm();
+        });
+
+        function updateForm(Id) {
+            fetch(`/Home/CategoryDetails?Id=${Id}`)
+                .then(res => res.json())
+                .then(category => {
+                    $('#Id').val(category.id);
+                    $('#Name').val(category.name);
+
+                    $('#saveBtn').addClass('d-none');
+                    $('#updateBtn').removeClass('d-none');
+                    $('#CategoryModal').modal('show');
+                });
+        }
+
+        function clearForm() {
+            $('#Id').val('');
+            $('#Name').val('');
+            $('#saveBtn').removeClass('d-none');
+            $('#updateBtn').addClass('d-none');
+        }
+    </script>
+}
