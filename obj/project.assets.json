@@ -4570,11 +4570,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\emirh\\Desktop\\EmirhanBlogProject\\AdminBlog\\AdminBlog.csproj",
+      "projectUniqueName": "C:\\Users\\emirh\\Documents\\GitHub\\BlogAdminPAnel\\AdminBlog.csproj",
       "projectName": "AdminBlog",
-      "projectPath": "C:\\Users\\emirh\\Desktop\\EmirhanBlogProject\\AdminBlog\\AdminBlog.csproj",
+      "projectPath": "C:\\Users\\emirh\\Documents\\GitHub\\BlogAdminPAnel\\AdminBlog.csproj",
       "packagesPath": "C:\\Users\\emirh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\emirh\\Desktop\\EmirhanBlogProject\\AdminBlog\\obj\\",
+      "outputPath": "C:\\Users\\emirh\\Documents\\GitHub\\BlogAdminPAnel\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\emirh\\AppData\\Roaming\\NuGet\\NuGet.Config",

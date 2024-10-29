@@ -1,11 +1,13 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using AdminBlog.Models;
-
+using AdminBlog.Filter;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AdminBlog.Controllers;
 
+
+[UserFilter]
 public class BlogController : Controller
 {
 
